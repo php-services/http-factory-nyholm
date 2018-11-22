@@ -1,0 +1,39 @@
+{
+    "name": "services/http-factory-nyholm",
+    "type": "library",
+    "description": "Provides nyholm Psr-17 http-factory implementation",
+    "keywords": [
+        "psr-7",
+        "psr-17",
+        "http-message",
+        "http-factory",
+        "service-provider"
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/quanta/http-factory-nyholm",
+    "support": {
+        "issues": "https://github.com/quanta/http-factory-nyholm/issues",
+        "source": "https://github.com/quanta/http-factory-nyholm"
+    },
+    "authors": [
+        {
+            "name": "pmall",
+            "email": "pierre.mallinjoud@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "psr/http-factory": "^1.0",
+        "container-interop/service-provider": "^0.4.0",
+        "nyholm/psr7": "^1.0"
+    },
+    "require-dev": {
+        "kahlan/kahlan": "^4.0",
+        "eloquent/phony-kahlan": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Services\\Http\\Message\\": "src"
+        }
+    }
+}
