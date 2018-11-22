@@ -23,13 +23,15 @@
     ],
     "require": {
         "php": ">=7.0",
-        "psr/http-factory": "^1.0",
+        "psr/container": "^1.0",
         "container-interop/service-provider": "^0.4.0",
+        "psr/http-factory": "^1.0",
         "nyholm/psr7": "^1.0"
     },
     "require-dev": {
         "kahlan/kahlan": "^4.0",
-        "eloquent/phony-kahlan": "^2.0"
+        "eloquent/phony-kahlan": "^2.0",
+        "quanta/container": "^0.2.4"
     },
     "autoload": {
         "psr-4": {
