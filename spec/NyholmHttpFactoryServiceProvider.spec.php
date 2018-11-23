@@ -11,13 +11,13 @@ use Interop\Container\ServiceProviderInterface;
 
 use Quanta\Container;
 use Nyholm\Psr7\Factory\Psr17Factory;
-use Services\Http\Message\NyholmPsr17FactoryServiceProvider;
+use Services\Http\NyholmHttpFactoryServiceProvider;
 
-describe('NyholmPsr17FactoryServiceProvider', function () {
+describe('NyholmHttpFactoryServiceProvider', function () {
 
     beforeEach(function () {
 
-        $this->provider = new NyholmPsr17FactoryServiceProvider;
+        $this->provider = new NyholmHttpFactoryServiceProvider;
 
     });
 

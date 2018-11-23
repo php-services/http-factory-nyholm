@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Services\Http\Message;
+namespace Services\Http;
 
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\UriFactoryInterface;
@@ -13,7 +13,7 @@ use Interop\Container\ServiceProviderInterface;
 
 use Nyholm\Psr7\Factory\Psr17Factory;
 
-final class NyholmPsr17FactoryServiceProvider implements ServiceProviderInterface
+final class NyholmHttpFactoryServiceProvider implements ServiceProviderInterface
 {
     public function getFactories()
     {
