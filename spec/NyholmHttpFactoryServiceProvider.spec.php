@@ -1,5 +1,7 @@
 <?php
 
+use function Eloquent\Phony\Kahlan\mock;
+
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\UriFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;
@@ -9,13 +11,14 @@ use Psr\Http\Message\ServerRequestFactoryInterface;
 
 use Interop\Container\ServiceProviderInterface;
 
-use Quanta\Container;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Services\Http\NyholmHttpFactoryServiceProvider;
 
 describe('NyholmHttpFactoryServiceProvider', function () {
 
     beforeEach(function () {
+
+        $this->container = mock(ContainerInterface::class);
 
         $this->provider = new NyholmHttpFactoryServiceProvider;
 
@@ -29,70 +32,78 @@ describe('NyholmHttpFactoryServiceProvider', function () {
 
     describe('->getFactories()', function () {
 
+        beforeEach(function () {
+
+            $this->factory = new Psr17Factory;
+
+            $this->container->get->with(Psr17Factory::class)->returns($this->factory);
+
+            $this->factories = $this->provider->getFactories();
+
+        });
+
         it('should return an array of length 6', function () {
 
-            $test = $this->provider->getFactories();
-
-            expect($test)->toBeAn('array');
-            expect($test)->toHaveLength(6);
+            expect($this->factories)->toBeAn('array');
+            expect($this->factories)->toHaveLength(6);
 
         });
 
         it('should provide a ServerRequestFactoryInterface entry aliasing the Psr17Factory one', function () {
 
-            $container = new Container($this->provider->getFactories());
+            $factory = $this->factories[ServerRequestFactoryInterface::class];
 
-            $test = $container->get(ServerRequestFactoryInterface::class);
+            $test = $factory($this->container->get());
 
-            expect($test)->toBe($container->get(Psr17Factory::class));
+            expect($test)->toBe($this->factory);
 
         });
 
         it('should provide an UriFactoryInterface entry aliasing the Psr17Factory one', function () {
 
-            $container = new Container($this->provider->getFactories());
+            $factory = $this->factories[UriFactoryInterface::class];
 
-            $test = $container->get(UriFactoryInterface::class);
+            $test = $factory($this->container->get());
 
-            expect($test)->toBe($container->get(Psr17Factory::class));
+            expect($test)->toBe($this->factory);
 
         });
 
         it('should provide a StreamFactoryInterface entry aliasing the Psr17Factory one', function () {
 
-            $container = new Container($this->provider->getFactories());
+            $factory = $this->factories[UriFactoryInterface::class];
 
-            $test = $container->get(StreamFactoryInterface::class);
+            $test = $factory($this->container->get());
 
-            expect($test)->toBe($container->get(Psr17Factory::class));
+            expect($test)->toBe($this->factory);
 
         });
 
         it('should provide a ResponseFactoryInterface entry aliasing the Psr17Factory one', function () {
 
-            $container = new Container($this->provider->getFactories());
+            $factory = $this->factories[ResponseFactoryInterface::class];
 
-            $test = $container->get(ResponseFactoryInterface::class);
+            $test = $factory($this->container->get());
 
-            expect($test)->toBe($container->get(Psr17Factory::class));
+            expect($test)->toBe($this->factory);
 
         });
 
         it('should provide an UploadedFileFactoryInterface entry aliasing the Psr17Factory one', function () {
 
-            $container = new Container($this->provider->getFactories());
+            $factory = $this->factories[UploadedFileFactoryInterface::class];
 
-            $test = $container->get(UploadedFileFactoryInterface::class);
+            $test = $factory($this->container->get());
 
-            expect($test)->toBe($container->get(Psr17Factory::class));
+            expect($test)->toBe($this->factory);
 
         });
 
         it('should provide a Psr17Factory entry', function () {
 
-            $container = new Container($this->provider->getFactories());
+            $factory = $this->factories[Psr17Factory::class];
 
-            $test = $container->get(Psr17Factory::class);
+            $test = $factory($this->container->get());
 
             expect($test)->toEqual(new Psr17Factory);
 
