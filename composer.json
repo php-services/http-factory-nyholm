@@ -10,10 +10,10 @@
         "service-provider"
     ],
     "license": "MIT",
-    "homepage": "https://github.com/quanta/http-factory-nyholm",
+    "homepage": "https://github.com/php-services/http-factory-nyholm",
     "support": {
-        "issues": "https://github.com/quanta/http-factory-nyholm/issues",
-        "source": "https://github.com/quanta/http-factory-nyholm"
+        "issues": "https://github.com/php-services/http-factory-nyholm/issues",
+        "source": "https://github.com/php-services/http-factory-nyholm"
     },
     "authors": [
         {
@@ -21,17 +21,20 @@
             "email": "pierre.mallinjoud@gmail.com"
         }
     ],
+    "config": {
+        "sort-packages": true
+    },
     "require": {
         "php": ">=7.0",
-        "psr/container": "^1.0",
         "container-interop/service-provider": "^0.4.0",
-        "psr/http-factory": "^1.0",
-        "nyholm/psr7": "^1.0"
+        "nyholm/psr7": "^1.0",
+        "psr/container": "^1.0",
+        "psr/http-factory": "^1.0"
     },
     "require-dev": {
-        "kahlan/kahlan": "^4.0",
         "eloquent/phony-kahlan": "^2.0",
-        "quanta/container": "^0.2.4"
+        "kahlan/kahlan": "^4.0",
+        "quanta/container": "^0.2.7"
     },
     "autoload": {
         "psr-4": {
